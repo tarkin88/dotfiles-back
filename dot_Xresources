@@ -1,0 +1,47 @@
+Xft.dpi:135
+Xft.rgba:      rgba
+Xft.antialias: 1
+Xft.hinting:   1
+Xft.autohint:  0
+*.font: JetBrainsMono Nerd Font:pixelsize=21:antialias=true:autohint=true:hintstyle=hintmedium
+#include "/home/frank/.Xresources.d/dusk.resources/themes/dark/rose-pine-moon.res"
+#include "/home/frank/.Xresources.d/dusk.resources/themes/template.txt"
+! special
+*.foreground:   #e0def4
+*.background:   #232136
+*.cursorColor:  #e0def4
+
+! black
+*.color0:       #2a273f
+*.color8:       #393552
+
+! red
+*.color1:       #eb6f92
+*.color9:       #eb6f92
+
+! green
+*.color2:       #f6c177
+*.color10:      #f6c177
+
+! yellow
+*.color3:       #ea9a97
+*.color11:      #ea9a97
+
+! blue
+*.color4:       #3e8fb0
+*.color12:      #3e8fb0
+
+! magenta
+*.color5:       #c4a7e7
+*.color13:      #c4a7e7
+
+! cyan
+*.color6:       #9ccfd8
+*.color14:      #9ccfd8
+
+! white
+*.color7:       #6e6a86
+*.color15:      #908caa
+
+*.selbackground: #eb6f92
+*.selforeground: #232136
