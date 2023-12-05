@@ -1,0 +1,7 @@
+pyversion=3.8
+pvenv=$(basename $PWD)
+
+use python ${pyversion}
+layout virtualenv ${pyversion} ${pvenv}
+layout activate ${pvenv}-${pyversion}
+
