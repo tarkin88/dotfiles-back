@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+LINES=7
+HEIGHT=15
+PROMPT_TEXT="search"
+
+dmenu_run  -l ${LINES} -h ${HEIGHT} -p ${PROMPT_TEXT}
