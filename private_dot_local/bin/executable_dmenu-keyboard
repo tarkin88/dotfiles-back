@@ -1,0 +1,13 @@
+#! /bin/env bash
+change_layout ()
+{
+  setxkbmap $1
+  notify-send "Keyboard Layout changed" "set to ${1}"
+}
+
+case "$(echo -e "english\nspanish" | dmenu \
+    -b  -i -p  \
+    "Keyboard layout:" -l 2)" in
+        english) change_layout us;;
+        spanish) change_layout es;;
+esac
