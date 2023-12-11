@@ -244,13 +244,13 @@ static const Rule clientrules[] = {
 	{ .wintype = WTYPE "UTILITY", .flags = AlwaysOnTop|Centered|Floating },
 	{ .wintype = WTYPE "TOOLBAR", .flags = AlwaysOnTop|Centered|Floating },
 	{ .wintype = WTYPE "SPLASH", .flags = AlwaysOnTop|Centered|Floating },
-	{ .instance = "spterm (w)", .scratchkey = 'w', .flags = Floating, .floatpos = "0% 0%" },
-	{ .instance = "spterm (e)", .scratchkey = 'e', .flags = Floating, .floatpos = "100% 0%"  },
-	{ .instance = "spterm (t)", .scratchkey = 't', .flags = Floating, .floatpos = "50% 0%"  },
-	{ .instance = "spfm (r)", .scratchkey = 'r', .flags = Floating|Centered },
-	{ .instance = "spvol (v)", .scratchkey = 'v', .flags = Floating|Centered },
-	{ .class = "Slack", .workspace = "4", .flags = SwitchWorkspace },
-  { .class = "Spotify", .workspace = "6"},
+	{ .instance = "spterm (w)", .scratchkey = 'w', .flags = Floating, .floatpos = "0% 0% 45% 100%" },
+	{ .instance = "spterm (e)", .scratchkey = 'e', .flags = Floating, .floatpos = "100% 0% 45% 100%"  },
+	{ .instance = "spterm (t)", .scratchkey = 't', .flags = Floating, .floatpos = "50% 50% 40% 50%"  },
+	{ .instance = "spfm (r)", .scratchkey = 'r', .flags = Floating, .floatpos = "50% 0% 40% 35%"  },
+	{ .instance = "spvol (v)", .scratchkey = 'v', .flags = Floating, .floatpos = "50% 0% 35% 20%"  },
+	{ .class = "Slack", .workspace = "4" },
+  { .class = "Spotify", .workspace = "6", .flags = SwitchWorkspace},
 	{ .class = "firefox",.flags = AttachMaster},
 	{ .class = "Steam", .flags = Floating|Centered },
 	{ .class = "steam_app_", .flags = SteamGame|Floating|Centered },
@@ -386,7 +386,7 @@ static const WorkspaceRule wsrules[] = {
 	/*                                                                     ------------------------------- schemes ------------------------------- ------ icons ------
 	   name,  monitor,  pinned,  layout,  mfact,  nmaster,  nstack,  gaps, default,          visible,          selected,         occupied,         def,   vac,  occ,  */
 	{  "1",   -1,       0,       0,       -1,    -1,       -1,      -1,    SchemeWsNorm,     SchemeWsVisible,  SchemeWsSel,      SchemeWsOcc,      "1",   "",   "1", },
-	{  "2",   -1,       0,       9,       .80,   -1,       -1,      -1,    SchemeWsNorm,     SchemeWsVisible,  SchemeWsSel,      SchemeWsOcc,      "2",   "",   "2", },
+	{  "2",   -1,       0,       9,       .60,   -1,       -1,      -1,    SchemeWsNorm,     SchemeWsVisible,  SchemeWsSel,      SchemeWsOcc,      "2",   "",   "2", },
 	{  "3",   -1,       0,       0,       -1,    -1,       -1,      -1,    SchemeWsNorm,     SchemeWsVisible,  SchemeWsSel,      SchemeWsOcc,      "3",   "",   "3", },
 	{  "4",   -1,       0,       0,       -1,    -1,       -1,      -1,    SchemeWsNorm,     SchemeWsVisible,  SchemeWsSel,      SchemeWsOcc,      "4",   "",   "4", },
 	{  "5",   -1,       0,       0,       -1,    -1,       -1,      -1,    SchemeWsNorm,     SchemeWsVisible,  SchemeWsSel,      SchemeWsOcc,      "5",   "",   "5", },
@@ -462,6 +462,10 @@ static const Layout layouts[] = {
 
 /* Scratch/Spawn commands:        NULL (scratchkey), command, argument, argument, ..., NULL */
 static const char *termcmd[]  = { NULL, "st", NULL };
+static const char *powermenu[]  = { NULL, "/home/frank/.local/bin/dmenu-power", NULL };
+static const char *kblayoutmenu[]  = { NULL, "/home/frank/.local/bin/dmenu-keyboard", NULL };
+static const char *clipboardcmd[] = { NULL, "/home/frank/.local/bin/dmenu-clipboard", NULL };
+static const char *screenshotsmenu[] = { NULL, "/home/frank/.local/bin/dmenu-screenshots", "-m", NULL };
 static const char *dmenucmd[] = {
 	NULL,
 	"dmenu_run",
@@ -473,31 +477,13 @@ static const char *dmenucmd[] = {
   "-l", "7",
 	NULL
 };
-static const char *roficmd[] = {
-  NULL,
-  "rofi",
-  "-show",
-  "drun",
-  NULL
-};
 
-static const char *clipboardcmd[] = {
-  NULL,
-  "rofi",
-  "-modi",
-  "clipboard:greenclip print",
-  "-show", 
-  "clipboard",
-  "-run-command",
-  "'{cmd}'",
-  NULL
-};
 
-static const char *spcmd_w[] = {"w", "st", "-n", "spterm (w)", "-g", "130x30", NULL };
-static const char *spcmd_e[] = {"e", "st", "-n", "spterm (e)", "-g", "130x30", NULL };
-static const char *spcmd_t[] = {"t", "st", "-n", "spterm (t)", "-g", "160x40", NULL };
-static const char *spcmd_r[] = {"r", "st", "-n", "spfm (r)", "-g", "100x21", "-e", "ranger", NULL };
-static const char *spcmd_v[] = {"v", "st", "-n", "spvol (v)", "-g", "80x11", "-e", "pulsemixer", NULL };
+static const char *spcmd_w[] = {"w", "st", "-n", "spterm (w)", NULL };
+static const char *spcmd_e[] = {"e", "st", "-n", "spterm (e)", NULL };
+static const char *spcmd_t[] = {"t", "st", "-n", "spterm (t)", NULL };
+static const char *spcmd_r[] = {"r", "st", "-n", "spfm (r)","-e", "ranger", NULL };
+static const char *spcmd_v[] = {"v", "st", "-n", "spvol (v)", "-e", "pulsemixer", NULL };
 static const char *statusclickcmd[] = { NULL, "bin/statusbar/statusclick.sh", NULL };
 
 static const char *upvol[] = { NULL, "pulsemixer", "--change-volume", "+5", NULL };
@@ -511,10 +497,13 @@ static const char *playerplaypause[] = { NULL, "playerctl", "play-pause", NULL }
 
 static Key keys[] = {
 	/* type       modifier                      key              function                argument */
-	{ KeyPress,   MODKEY,                       XK_p,            spawn,                  {.v = roficmd } }, // spawn dmenu for launching other programs
+	{ KeyPress,   MODKEY,                       XK_p,            spawn,                  {.v = dmenucmd } }, // spawn dmenu for launching other programs
 	{ KeyPress,   MODKEY,                       XK_Return,       spawn,                  {.v = termcmd } }, // spawn a terminal
 	{ KeyPress,   MODKEY|Shift,                 XK_Return,       riospawn,               {.v = termcmd } }, // draw/spawn a terminal
 	{ KeyPress,   Ctrl|Alt,                     XK_h,            spawn,                  {.v = clipboardcmd } }, // spawn clipboard manager
+	{ KeyPress,   Ctrl|Alt,                     XK_x,            spawn,                  {.v = powermenu } }, // spawn clipboard manager
+	{ KeyPress,   Ctrl|Alt,                     XK_space,        spawn,                  {.v = kblayoutmenu } }, // spawn keyboard layout swithcer
+	{ KeyPress,   0,                            XK_Print,        spawn,                  {.v = screenshotsmenu } }, // spawn screenshotsmenu
 
 	{ KeyPress,   MODKEY,                       XK_b,            togglebar,              {0} }, // toggles the display of the bar(s) on the current monitor
 
@@ -545,7 +534,7 @@ static Key keys[] = {
 
 	{ KeyPress,   MODKEY,                       XK_backslash,    togglepinnedws,         {0} }, // toggle pinning of currently selected workspace on the current monitor
 	{ KeyPress,   MODKEY,                       XK_z,            showhideclient,         {0} }, // hide the currently selected client (or show if hidden)
-	{ KeyPress,   MODKEY,                       XK_q,            killclient,             {0} }, // close the currently focused window
+	{ KeyPress,   MODKEY|Shift,                 XK_c,            killclient,             {0} }, // close the currently focused window
 	{ KeyPress,   MODKEY|Shift,                 XK_q,            restart,                {0} }, // restart dusk
 	{ KeyPress,   MODKEY|Ctrl|Alt,              XK_q,            quit,                   {0} }, // exit dusk
 
@@ -596,6 +585,7 @@ static Key keys[] = {
 	// { KeyPress,   MODKEY,                       XK_Tab,          viewwsdir,              {.i = +2 } }, // view the next workspace right of current workspace that has clients (on the current monitor)
 	{ KeyPress,   MODKEY|Ctrl|Alt,              XK_comma,        movewsdir,              {.i = -1 } }, // move client to workspace on the immediate left of current workspace (on the current monitor)
 	{ KeyPress,   MODKEY|Ctrl|Alt,              XK_period,       movewsdir,              {.i = +1 } }, // move client to workspace on the immediate right of current workspace (on the current monitor)
+	{ KeyPress,   MODKEY|Shift,                 XK_s,            togglesticky,           {0} }, // makes a client show on all workspaces)
 
 //	STACKKEYS(AltGr|Ctrl,                                        stackfocus)                           // focus on the nth client in the stack, see the STACKKEYS macro for keybindings
 //	STACKKEYS(AltGr|Ctrl|Shift,                                  stackpush)                            // move the currently focused client to the nth place in the stack
